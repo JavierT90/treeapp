@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">TreeApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="ParseApplicationId">DevXk7xnFYp5zXwqaysLzVa423VVVDZGj2ImTj0V</string>
+    <string name="ParseClientKey">8HpE6OYHexIM924k2NHUDvzBxnlzaj5bg0uGNRNX</string>
+    <string name="FbAppId">243549249129453</string>
+    <string name="TwConsumerKey">OomQgpGj0XYx3qRSm50uQ</string>
+    <string name="TwConsumerSecret">C49HsDSsptr8xa6BpD73DyBNDnzYV7NZqP2jRZJMyE</string>
+    <string name="Username">Usuario</string>
+    <string name="Password">Constraseña</string>
+    <string name="Forgot_your_passwordQ">¿Has olvidado tu contraseña?</string>
+    <string name="Login">Entrar</string>
+    <string name="Signup">Regístrate</string>
+    <string name="FbLogin">Login with facebook</string>
+    <string name="TwLogin">Login with twitter</string>
+    <string name="SignInWithP">Inicia sesion con:</string>
+    
+    <!-- COLORS -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="color_link">#489cdf</color>
+    <color name="start_color">#151515</color>
+    <color name="end_color">#01DF3A</color>
+    <color name="transparent_white">#52FFFFFF</color>
+</resources>
