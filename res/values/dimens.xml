@@ -6,4 +6,6 @@
     <dimen name="login_text">18sp</dimen>
 	<dimen name="login_top">80dp</dimen>
 	<dimen name="login_margin_top_bottom">15dp</dimen>
+	<dimen name="link_forgot_pass">14sp</dimen>
+	<dimen name="padding_buttons">28dp</dimen>
 </resources>

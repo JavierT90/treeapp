@@ -10,6 +10,7 @@
     <string name="FbAppId">243549249129453</string>
     <string name="TwConsumerKey">OomQgpGj0XYx3qRSm50uQ</string>
     <string name="TwConsumerSecret">C49HsDSsptr8xa6BpD73DyBNDnzYV7NZqP2jRZJMyE</string>
+    <string name="RegisterTitle">Crear cuenta</string>
     <string name="Username">Usuario</string>
     <string name="Password">Constraseña</string>
     <string name="Forgot_your_passwordQ">¿Has olvidado tu contraseña?</string>
@@ -17,8 +18,70 @@
     <string name="Signup">Regístrate</string>
     <string name="FbLogin">Login with facebook</string>
     <string name="TwLogin">Login with twitter</string>
-    <string name="SignInWithP">Inicia sesion con:</string>
-    
+    <string name="SignInWithP">Inicia sesión con:</string>
+    <string name="Email">Correo electrónico</string>
+    <string name="RetypePassword">Confirma contraseña</string>
+    <string name="Register">Registrar</string>
+    <string name="PhoneNumber">Teléfono</string>
+    <string name="GOOGLE_CLASS">com.google</string>
+    <string name="code">código</string>
+    <string name="phone">número</string>
+    <string name="AccountCreated">La cuenta fue creada</string>
+    <string name="Ok">OK</string>
+    <string name="titleErrors">Error</string>
+    <string name="titleProgressDialogs">Espera</string>
+    <string name="ErrorEmail">Email no válido</string>
+    <string name="ErrorEmailEmpty">Se requiere email</string>
+    <string name="ErrorUsernameEmpty">Se requiere nombre de usuario</string>
+    <string name="ErrorPhoneCodeEmpty">Se requiere código de país</string>
+    <string name="ErrorPhoneEmpty">Se requiere número de teléfono</string>
+    <string name="ErrorPassEmpty">Se requiere contraseña</string>
+    <string name="ErrorRetypePassEmpty">Vuelva a ingresar la contraseña</string>
+    <string name="ErrorPassLenghtShort">La contraseña debe tener 8 caracteres o más</string>
+    <string name="ErrorPassNotEqual">Las contraseñas no son iguales</string>
+    <string name="MsgWaitSignUp">Creando usuario&#8230;</string>
+    <string name="ACCOUNT_ALREADY_LINKED">Ya existe un usuario con la misma cuenta</string>
+	<string name="CACHE_MISS">El resultado no fue encontrado en el caché</string>
+	<string name="COMMAND_UNAVAILABLE">La característica que intentó acceder sólo está disponible internamente para propósitos de prueba</string>    
+    <string name="CONNECTION_FAILED">La conexión se perdió</string>
+    <string name="DUPLICATE_VALUE">A un campo único se le dio un valor que ya está tomado</string>
+    <string name="EMAIL_MISSING">Debe especificar email</string>
+    <string name="EMAIL_NOT_FOUND">No se ha encontrado un usuario con la dirección de correo electrónico especificada</string>
+    <string name="EMAIL_TAKEN">La dirección de correo electrónico ya ha sido usada</string>
+    <string name="EXCEEDED_QUOTA">Se ha superado una cuota de solicitud</string>
+    <string name="FILE_DELETE_ERROR">La eliminación del archivo fracasó</string>
+    <string name="INCORRECT_TYPE">Un campo se establece en un tipo incompatible</string>
+    <string name="INTERNAL_SERVER_ERROR">Algo ha ido mal con el servidor</string>
+    <string name="INVALID_ACL">ACL no válido</string>
+    <string name="INVALID_CHANNEL_NAME">Nombre de canal no válido</string>
+    <string name="INVALID_CLASS_NAME">Clase falta o no es válida</string>
+    <string name="INVALID_EMAIL_ADDRESS">La dirección de correo electrónico no es válida</string>
+    <string name="INVALID_FILE_NAME">El nombre del archivo no es válido</string>
+    <string name="INVALID_JSON">Mal formada JSON fue recibido arriba</string>
+    <string name="INVALID_KEY_NAME">Nombre de clave no válido</string>
+    <string name="INVALID_LINKED_SESSION">Sesión no válida</string>
+    <string name="INVALID_NESTED_KEY">Se utilizó una tecla no válida en un JSONObject anidada</string>
+    <string name="INVALID_POINTER">Puntero incorrecto</string>
+    <string name="INVALID_QUERY">Trató de consultar con un tipo de datos no compatible con la base de datos</string>
+    <string name="INVALID_ROLE_NAME">El nombre de una función no es válida</string>
+    <string name="LINKED_ID_MISSING">El usuario no puede estar vinculado a una cuenta</string>
+    <string name="MISSING_OBJECT_ID">Identificador de objeto especificado</string>
+    <string name="MUST_CREATE_USER_THROUGH_SIGNUP">Usuario sólo puede crearse a través de registro</string>
+    <string name="OBJECT_TOO_LARGE">Objeto es demasiado grande</string>
+    <string name="OPERATION_FORBIDDEN">a operación no se permite para los clientes</string>
+    <string name="OTHER_CAUSE">Causa de error no conocida</string>
+    <string name="PASSWORD_MISSING">La contraseña falta o está vacío</string>
+    <string name="SCRIPT_ERROR">Secuencia de comandos Código Nube falló</string>
+    <string name="SESSION_MISSING">Usuario sin una sesión válida no puede ser alterado</string>
+    <string name="TIMEOUT">El tiempo de espera en el servidor terminó</string>
+    <string name="UNSUPPORTED_SERVICE"></string>
+    <string name="USERNAME_MISSING">Nombre de usuario no está presente o está vacío</string>
+    <string name="USERNAME_TAKEN">Nombre de usuario ya ha sido tomado</string>
+    <string name="VALIDATION_ERROR">Validación de código cloud falló</string>
+    <string name="NOT_INITIALIZED">No inicializado</string>
+    <string name="OBJECT_NOT_FOUND">Objeto no existe</string>
+    <string name="PUSH_MISCONFIGURED">Push no se ha configurado</string>
+	
     <!-- COLORS -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
@@ -26,4 +89,7 @@
     <color name="start_color">#151515</color>
     <color name="end_color">#01DF3A</color>
     <color name="transparent_white">#52FFFFFF</color>
+    
+    <!-- BOOLEANS -->
+    <bool name="PhoneRequired">true</bool>
 </resources>

@@ -8,6 +8,11 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    
     <application
         android:name="com.treeapp.TreeApplication"
         android:allowBackup="true"
@@ -22,6 +27,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.treeapp.RegisterActivity"
+            android:label="@string/RegisterTitle" >
         </activity>
     </application>
 

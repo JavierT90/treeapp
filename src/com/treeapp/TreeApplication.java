@@ -7,16 +7,21 @@ import com.parse.ParseACL;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseTwitterUtils;
 import com.parse.ParseUser;
+import com.treeapp.helpers.GlobalHelper;
 
 public class TreeApplication extends Application {
-
+ 
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		
+		// my helpers
+		GlobalHelper.initialize(this);
+		
+		// parse
 		Parse.initialize(getApplicationContext(), 
 				getResources().getString(R.string.ParseApplicationId), 
-				getResources().getString(R.string.ParseClientKey));
+				getResources().getString(R.string.ParseClientKey)); 
 		
         ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
@@ -24,13 +29,13 @@ public class TreeApplication extends Application {
         defaultACL.setPublicReadAccess(true);
         defaultACL.setPublicWriteAccess(true);
         ParseACL.setDefaultACL(defaultACL, true);
-        
-    	//Initialize Facebook Utils
-        ParseFacebookUtils.initialize(getResources().getString(R.string.FbAppId));
+
+    	//Initialize Facebook Utils  
+        ParseFacebookUtils.initialize(getResources().getString(R.string.FbAppId)); 
         
         //Initialize Twitter Utils
         ParseTwitterUtils.initialize(getResources().getString(R.string.TwConsumerKey),
-        		getResources().getString(R.string.TwConsumerSecret));
+        		getResources().getString(R.string.TwConsumerSecret)); 
 
 	}
 }
