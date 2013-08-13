@@ -108,11 +108,19 @@ public class RegisterActivity extends SherlockActivity {
 	// get references
 	private void getViews() {
 		TXTUsername = (EditText) findViewById(R.id.TXTUsername);
+		TXTUsername.addTextChangedListener(new CleanErrorWatcher(TXTUsername));
 		TXTEmail = (EditText) findViewById(R.id.TXTEmail);
+		TXTEmail.addTextChangedListener(new CleanErrorWatcher(TXTEmail));
 		TXTPhone = (EditText) findViewById(R.id.TXTPhone);
+		TXTPhone.addTextChangedListener(new CleanErrorWatcher(TXTPhone));
 		TXTCountryCode = (EditText) findViewById(R.id.TXTCountryCode);
+		TXTCountryCode.addTextChangedListener(new CleanErrorWatcher(
+				TXTCountryCode));
 		TXTPassword = (EditText) findViewById(R.id.TXTPassword);
+		TXTPassword.addTextChangedListener(new CleanErrorWatcher(TXTPassword));
 		TXTRetypePass = (EditText) findViewById(R.id.TXTRetypePass);
+		TXTRetypePass.addTextChangedListener(new CleanErrorWatcher(
+				TXTRetypePass));
 	}
 
 	public void click(View view) {
@@ -125,15 +133,19 @@ public class RegisterActivity extends SherlockActivity {
 				String mPhone = TXTPhone.getText().toString();
 				String mPassword = TXTPassword.getText().toString();
 				String mRetypePass = TXTRetypePass.getText().toString();
-				
+
 				RegisterException exception = null;
-				if ((exception = GlobalHelper.isValidNewUser(this, mUserName, mEmail, mCodePhone,
-						mPhone, mPassword, mRetypePass)) == null) {
-					final AlertDialog alert = new AlertDialog.Builder(this).setPositiveButton(
-							getResources().getString((R.string.Ok)), null).create();
+				if ((exception = GlobalHelper.isValidNewUser(this, mUserName,
+						mEmail, mCodePhone, mPhone, mPassword, mRetypePass)) == null) {
+					final AlertDialog alert = new AlertDialog.Builder(this)
+							.setPositiveButton(
+									getResources().getString((R.string.Ok)),
+									null).create();
 					final ProgressDialog dialog = new ProgressDialog(this);
-					dialog.setMessage(getResources().getString(R.string.MsgWaitSignUp));
-					dialog.setTitle(getResources().getString(R.string.titleProgressDialogs));
+					dialog.setMessage(getResources().getString(
+							R.string.MsgWaitSignUp));
+					dialog.setTitle(getResources().getString(
+							R.string.titleProgressDialogs));
 					dialog.setIcon(R.drawable.ic_launcher);
 					dialog.setCancelable(false);
 					dialog.setCanceledOnTouchOutside(false);
@@ -146,49 +158,86 @@ public class RegisterActivity extends SherlockActivity {
 
 					user.put(ParseObjects.User.codePhone, mCodePhone);
 					user.put(ParseObjects.User.numberPhone, mPhone);
-					
+					user.put(ParseObjects.User.pass, mPassword);
+
 					user.signUpInBackground(new SignUpCallback() {
-						
+
 						@Override
 						public void done(ParseException e) {
 							dialog.dismiss();
 							if (e == null) {
-								Toast.makeText(getApplicationContext(), 
-										getResources().getString(R.string.AccountCreated), 
+								Toast.makeText(
+										getApplicationContext(),
+										getResources().getString(
+												R.string.AccountCreated),
 										Toast.LENGTH_LONG).show();
-								
+
 							} else {
-								alert.setMessage(GlobalHelper.getErrorMsg(e.getCode()));
-								alert.setTitle(getResources().getString(
-										R.string.titleErrors));
-								alert.setIcon(R.drawable.ic_launcher);
-								alert.setCancelable(true);
-								alert.setCanceledOnTouchOutside(true);
-								alert.show();				
+								String msj = GlobalHelper.getErrorMsg(e.getCode());
+								if (!setErrorInEditText(new RegisterException(
+										msj, e.getCode()))) {
+									alert.setMessage(GlobalHelper.getErrorMsg(e
+											.getCode()));
+									alert.setTitle(getResources().getString(
+											R.string.titleErrors));
+									alert.setIcon(R.drawable.ic_launcher);
+									alert.setCancelable(true);
+									alert.setCanceledOnTouchOutside(true);
+									alert.show();
+								}
 							}
 						}
 					});
 				} else {
-					switch (exception.getCode()) {
-					case GlobalHelper.ERR_REG_EMAIL:
-						TXTEmail.setError(exception.getMessage());
-						break;
-					case GlobalHelper.ERR_REG_PASS:
-						TXTPassword.setError(exception.getMessage());
-						break;
-					case GlobalHelper.ERR_REG_PHONE_CODE:
-						TXTCountryCode.setError(exception.getMessage());
-						break;
-					case GlobalHelper.ERR_REG_PHONE_NUMBER:
-						TXTPassword.setError(exception.getMessage());
-						break;
-					case GlobalHelper.ERR_REG_USER:
-						TXTUsername.setError(exception.getMessage());
-						break;
-					}
+					setErrorInEditText(exception);
 				}
 			}
 		}
+	}
+
+	/**
+	 * Set the error on the correspondent EditText view
+	 * 
+	 * @param exception
+	 *            the exception
+	 * @return true if correspond an any EditText or false if not
+	 */
+	private boolean setErrorInEditText(RegisterException exception) {
+		switch (exception.getCode()) {
+		case GlobalHelper.ERR_REG_EMAIL:
+			TXTEmail.setError(exception.getMessage());
+			TXTEmail.requestFocus();
+			return true;
+		case GlobalHelper.ERR_REG_PASS:
+			TXTPassword.setError(exception.getMessage());
+			TXTPassword.requestFocus();
+			return true;
+		case GlobalHelper.ERR_REG_PHONE_CODE:
+			TXTCountryCode.setError(exception.getMessage());
+			TXTCountryCode.requestFocus();
+			return true;
+		case GlobalHelper.ERR_REG_PHONE_NUMBER:
+			TXTPhone.setError(exception.getMessage());
+			TXTPhone.requestFocus();
+			return true;
+		case GlobalHelper.ERR_REG_USER:
+			TXTUsername.setError(exception.getMessage());
+			TXTUsername.requestFocus();
+			return true;
+		case GlobalHelper.ERR_REG_RETYPE_PASS:
+			TXTRetypePass.setError(exception.getMessage());
+			TXTRetypePass.requestFocus();
+			return true;
+		case ParseException.EMAIL_TAKEN:
+			TXTEmail.setError(exception.getMessage());
+			TXTEmail.requestFocus();
+			return true;
+		case ParseException.USERNAME_TAKEN:
+			TXTUsername.setError(exception.getMessage());
+			TXTUsername.requestFocus();
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -198,5 +247,33 @@ public class RegisterActivity extends SherlockActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private class CleanErrorWatcher implements TextWatcher {
+
+		private EditText mEditText;
+
+		public CleanErrorWatcher(EditText mEditText) {
+			this.mEditText = mEditText;
+		}
+
+		@Override
+		public void afterTextChanged(Editable s) {
+
+		}
+
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+			if(mEditText.getError() != null)
+				mEditText.setError(null);
+		}
+
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before,
+				int count) {
+
+		}
+
 	}
 }

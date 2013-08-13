@@ -36,7 +36,7 @@
     <string name="ErrorPhoneCodeEmpty">Se requiere código de país</string>
     <string name="ErrorPhoneEmpty">Se requiere número de teléfono</string>
     <string name="ErrorPassEmpty">Se requiere contraseña</string>
-    <string name="ErrorRetypePassEmpty">Vuelva a ingresar la contraseña</string>
+    <string name="ErrorRetypePassEmpty">Vuelve a ingresar la contraseña</string>
     <string name="ErrorPassLenghtShort">La contraseña debe tener 8 caracteres o más</string>
     <string name="ErrorPassNotEqual">Las contraseñas no son iguales</string>
     <string name="MsgWaitSignUp">Creando usuario&#8230;</string>
@@ -92,4 +92,6 @@
     
     <!-- BOOLEANS -->
     <bool name="PhoneRequired">true</bool>
+    <!-- validation with dialog or error in EditText -->
+    <bool name="ValidationWithDialog">false</bool>
 </resources>

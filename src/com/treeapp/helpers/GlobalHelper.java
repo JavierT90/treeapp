@@ -15,6 +15,7 @@ public class GlobalHelper {
 
 	private static Application context;
 	private static boolean phoneRequired;
+	public static boolean validationWithDialog;
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	public static final int ERR_REG_USER = 1;
@@ -22,6 +23,7 @@ public class GlobalHelper {
 	public static final int ERR_REG_PHONE_CODE = 3;
 	public static final int ERR_REG_PHONE_NUMBER = 4;
 	public static final int ERR_REG_PASS = 5;
+	public static final int ERR_REG_RETYPE_PASS = 6;
 
 	/**
 	 * Initialize every helpers
@@ -31,6 +33,7 @@ public class GlobalHelper {
 	public static void initialize(Application app) {
 		context = app;
 		phoneRequired = app.getResources().getBoolean(R.bool.PhoneRequired);
+		validationWithDialog = app.getResources().getBoolean(R.bool.ValidationWithDialog);
 		// initialize other helpers
 	}
 
@@ -69,13 +72,16 @@ public class GlobalHelper {
 		} else if ((errMsg = isValidPhoneNumber(numberPhone)) != null) {
 			// number not valid
 			ret = ERR_REG_PHONE_NUMBER;
-		} else if ((errMsg = isValidPass(pass, retryPass)) != null) {
-			// pass are not valid
+		} else if ((errMsg = isValidPass(pass)) != null) {
+			// pass not valid
 			ret = ERR_REG_PASS;
+		} else if ((errMsg = isValidPass(pass, retryPass)) != null) {
+			// retype pass not valid
+			ret = ERR_REG_RETYPE_PASS;
 		} else {
 			return null;
 		}
-		if (errMsg != null) {
+		if (errMsg != null && validationWithDialog) {
 			alert.setMessage(errMsg);
 			alert.setTitle(context.getResources().getString(
 					R.string.titleErrors));
@@ -84,7 +90,8 @@ public class GlobalHelper {
 			alert.setCanceledOnTouchOutside(true);
 			alert.show();
 		}
-		RegisterException e = new RegisterException(errMsg, ret);
+		RegisterException e = new RegisterException(validationWithDialog ? 
+				"" : errMsg, ret);
 		return e;
 	}
 
@@ -151,6 +158,21 @@ public class GlobalHelper {
 			return null;
 		else
 			return getSt(R.string.ErrorPhoneEmpty);
+	}
+	
+	/**
+	 * Validate first pass
+	 * @param pass
+	 * @return message of the error or null
+	 */
+	private static String isValidPass(String pass) {
+		if(notNullOrEmpty(pass)) {
+			if(pass.length() >= 8) {
+				return null;
+			} else
+				return getSt(R.string.ErrorPassLenghtShort);
+		} else
+			return getSt(R.string.ErrorPassEmpty);
 	}
 
 	/**

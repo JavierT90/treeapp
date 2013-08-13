@@ -8,4 +8,7 @@
 	<dimen name="login_margin_top_bottom">15dp</dimen>
 	<dimen name="link_forgot_pass">14sp</dimen>
 	<dimen name="padding_buttons">28dp</dimen>
+	<dimen name="link_padding_sides">4dp</dimen>
+	<dimen name="link_padding_up_down">5dp</dimen>
+	<dimen name="link_corner_radius">4dp</dimen>
 </resources>
