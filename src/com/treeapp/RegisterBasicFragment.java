@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -30,6 +31,7 @@ import com.parse.SignUpCallback;
 import com.treeapp.exceptions.RegisterException;
 import com.treeapp.helpers.GlobalHelper;
 import com.treeapp.objects.ParseObjects;
+import com.treeapp.windows.CustomToast;
 
 public class RegisterBasicFragment extends Fragment implements OnClickListener {
 
@@ -46,13 +48,25 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 	// the actual error:
 	private String error;
 	// account Created?
-	private boolean created = false;
+	private boolean created;
+	private static final String CREATED = "created";
 
 	private View mView;
-
+	private final String TAG = "Register Basic";
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		created = false;
+	}
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		if(savedInstanceState != null)
+			created = savedInstanceState.getBoolean(CREATED);
+		else 
+			created = false;
+		Log.d(TAG, "onCreate");
 	}
 
 	@Override
@@ -60,6 +74,7 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 			Bundle savedInstanceState) {
 		mView = inflater.inflate(R.layout.registration_activity, null);
 		onCreate();
+		Log.d(TAG, "onCreateView");
 		return mView;
 	}
 
@@ -279,16 +294,27 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 
 	private void finishSignUp() {
 		created = true;
-		Toast.makeText(getActivity(), R.string.AccountCreated,
+		CustomToast.makeInfoText(getActivity(), "Account created!",
 				Toast.LENGTH_LONG).show();
+//		Toast.makeText(getActivity(), R.string.AccountCreated,
+//				Toast.LENGTH_LONG).show();
 		// to add Picture
 		RegisterActivity.mViewPager.setCurrentItem(1);
+		// quit error
+		if (mEditText != null) {
+			mEditText = null;
+			error = null;
+		}
+		
+		initStateWhenCreated();
+	}
+	
+	private void initStateWhenCreated() {
+		Log.d(TAG, "initStateWhenCreated");
 		// hide keyboard
 		InputMethodManager imm = (InputMethodManager) getActivity()
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(TXTCountryCode.getWindowToken(), 0);
-		// show OK icon
-
 		// disable EditTexts
 		TXTUsername.setKeyListener(null);
 		TXTEmail.setKeyListener(null);
@@ -296,14 +322,10 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 		TXTPhone.setKeyListener(null);
 		TXTPassword.setKeyListener(null);
 		TXTRetypePass.setKeyListener(null);
-		// quit error
-		if (mEditText != null) {
-			mEditText = null;
-			error = null;
-		}
 		// set OK image
 		IMVComplete.setBackground(getActivity().getResources().
 				getDrawable(R.drawable.ic_ok));
+
 	}
 
 	public void clearErrors() {
@@ -314,8 +336,50 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 	public void restErrors() {
 		if (mEditText != null && error != null)
 			mEditText.setError(error);
+	}  
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		Log.d(TAG, "onPause");
 	}
-
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		Log.d(TAG, "onResume"); 
+		
+		if(created) { // EditTexts not enabled
+			initStateWhenCreated();
+		} else
+			Log.d(TAG, "create is false");
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		Log.d(TAG, "onActivityCreated");
+	}
+	
+	@Override
+	public void onStart() {
+		super.onStart();
+		Log.d(TAG, "onStart");
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		Log.d(TAG, "onDestroy");
+	}
+	
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		
+		outState.putBoolean(CREATED, created);
+	}
+	
 	private class CleanErrorWatcher implements TextWatcher {
 
 		private EditText mEditText;

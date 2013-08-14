@@ -101,7 +101,13 @@
     <color name="trasnparent">#003B3E44</color>
     <color name="transparent_black">#52000000</color>
     <color name="transparent_black1">#EE000000</color>
-
+    <color name="transparent_error">#EEF2DEDE</color>
+    <color name="transparent_info">#EED9EDF7</color>
+    <color name="transparent_warning">#EEFCF8E3</color>
+    <color name="error">#953B39</color>
+    <color name="info">#3A87BD</color>
+    <color name="warning">#C09853</color>
+    
     <!-- BOOLEANS -->
     <bool name="PhoneRequired">true</bool>
     <!-- validation with dialog or error in EditText -->

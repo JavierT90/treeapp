@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.treeapp.R;
 import com.treeapp.RegisterPictureFragment;
 import com.treeapp.objects.Status;
+import com.treeapp.windows.CustomToast;
 
 public class SelectStatusAdapter extends ArrayAdapter<Status> {
 
@@ -51,6 +52,14 @@ public class SelectStatusAdapter extends ArrayAdapter<Status> {
 			@Override
 			public void onClick(View v) {
 				fragment.setStatus(index);
+				if(index == 0) {
+					CustomToast.makeErrorText(context, list.get(index).getStatus() +   
+							" lalaskhdfka j asl;kdfj aslkdjf ;laksdjf ;alksdjf ;laksj", Toast.LENGTH_SHORT).show();
+				} else if (index == 1) {
+					CustomToast.makeInfoText(context, list.get(index).getStatus() + " as;ldkfja;ls kdfj;a", Toast.LENGTH_SHORT).show();
+				} else {
+					CustomToast.makeWarningText( context, list.get(index).getStatus(), Toast.LENGTH_LONG).show();
+				}
 			}
 		});
 		return view;

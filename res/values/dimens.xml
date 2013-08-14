@@ -13,4 +13,7 @@
 	<dimen name="link_corner_radius">4dp</dimen>
 	<dimen name="status_dialog_radius">12dp</dimen>
 	<dimen name="picture_padding">30dp</dimen>
+	<dimen name="toast_separate">12dp</dimen>
+	<dimen name="toast_padding">7dp</dimen>
+	<dimen name="toast_top_down">2dp</dimen>
 </resources>
