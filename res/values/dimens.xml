@@ -11,4 +11,6 @@
 	<dimen name="link_padding_sides">4dp</dimen>
 	<dimen name="link_padding_up_down">5dp</dimen>
 	<dimen name="link_corner_radius">4dp</dimen>
+	<dimen name="status_dialog_radius">12dp</dimen>
+	<dimen name="picture_padding">30dp</dimen>
 </resources>

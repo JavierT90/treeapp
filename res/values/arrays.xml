@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="status">
+        <item>online</item>
+        <item>away</item>
+        <item>busy</item>
+        <item>invisible</item>
+        <item>offline</item>
+    </string-array>
     <string-array name="country_codes">
         <item>AF;AFG;93</item>
         <item>AL;ALB;355</item>

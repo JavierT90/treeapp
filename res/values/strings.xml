@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <string name="app_name">TreeApp</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-
     <string name="ParseApplicationId">DevXk7xnFYp5zXwqaysLzVa423VVVDZGj2ImTj0V</string>
     <string name="ParseClientKey">8HpE6OYHexIM924k2NHUDvzBxnlzaj5bg0uGNRNX</string>
     <string name="FbAppId">243549249129453</string>
@@ -18,6 +17,7 @@
     <string name="Signup">Regístrate</string>
     <string name="FbLogin">Login with facebook</string>
     <string name="TwLogin">Login with twitter</string>
+    <string name="GpLogin">Login with google plus</string>
     <string name="SignInWithP">Inicia sesión con:</string>
     <string name="Email">Correo electrónico</string>
     <string name="RetypePassword">Confirma contraseña</string>
@@ -41,8 +41,8 @@
     <string name="ErrorPassNotEqual">Las contraseñas no son iguales</string>
     <string name="MsgWaitSignUp">Creando usuario&#8230;</string>
     <string name="ACCOUNT_ALREADY_LINKED">Ya existe un usuario con la misma cuenta</string>
-	<string name="CACHE_MISS">El resultado no fue encontrado en el caché</string>
-	<string name="COMMAND_UNAVAILABLE">La característica que intentó acceder sólo está disponible internamente para propósitos de prueba</string>    
+    <string name="CACHE_MISS">El resultado no fue encontrado en el caché</string>
+    <string name="COMMAND_UNAVAILABLE">La característica que intentó acceder sólo está disponible internamente para propósitos de prueba</string>
     <string name="CONNECTION_FAILED">La conexión se perdió</string>
     <string name="DUPLICATE_VALUE">A un campo único se le dio un valor que ya está tomado</string>
     <string name="EMAIL_MISSING">Debe especificar email</string>
@@ -81,7 +81,16 @@
     <string name="NOT_INITIALIZED">No inicializado</string>
     <string name="OBJECT_NOT_FOUND">Objeto no existe</string>
     <string name="PUSH_MISCONFIGURED">Push no se ha configurado</string>
-	
+    <string name="Next">Siguiente</string>
+    <string name="CompleteRegister">Completa el registro</string>
+    <string name="contentDesc">Image</string>
+    <string name="Online">Disponible</string>
+    <string name="Away">Ausente</string>
+    <string name="Busy">Ocupado</string>
+    <string name="Invisible">Invisible</string>
+    <string name="Offline">Desconectado</string>
+    <string name="ChooseStatus">Elíge tu estado</string>
+
     <!-- COLORS -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
@@ -89,9 +98,13 @@
     <color name="start_color">#151515</color>
     <color name="end_color">#01DF3A</color>
     <color name="transparent_white">#52FFFFFF</color>
-    
+    <color name="trasnparent">#003B3E44</color>
+    <color name="transparent_black">#52000000</color>
+    <color name="transparent_black1">#EE000000</color>
+
     <!-- BOOLEANS -->
     <bool name="PhoneRequired">true</bool>
     <!-- validation with dialog or error in EditText -->
     <bool name="ValidationWithDialog">false</bool>
+
 </resources>

@@ -41,6 +41,8 @@ public class MainActivity extends Activity {
 			break;
 		case R.id.TXVSignUp:
 			signUp();
+		case R.id.BTNPlusLogin:
+			plusLogin();
 			break;
 		}
 	}
@@ -55,6 +57,10 @@ public class MainActivity extends Activity {
 	
 	private void twitterLogin() {
 		Log.d(TAG, "twitterLogin");
+	}
+	
+	private void plusLogin() {
+		Log.d(TAG, "plusLogin");
 	}
 	
 	private void forgotPass() {

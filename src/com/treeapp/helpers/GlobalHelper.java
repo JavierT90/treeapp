@@ -324,7 +324,12 @@ public class GlobalHelper {
 	 *            the ParseException code
 	 * @return message error
 	 */
-	public static String getErrorMsg(int code) {
+	public static RegisterException getErrorMsg(int code) {
+		return new RegisterException(validationWithDialog ? "" :
+			getSt(getParseExceptionTextId(code)), code);
+	}
+	
+	public static String getErrorMsgString(int code) {
 		return getSt(getParseExceptionTextId(code));
 	}
 

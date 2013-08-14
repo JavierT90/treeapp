@@ -103,6 +103,15 @@
                     android:contentDescription="@string/TwLogin"
                     android:onClick="click"
                     android:src="@drawable/btn_twitter_login" />
+                
+                <ImageButton 
+                    android:id="@+id/BTNPlusLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_links"
+                    android:contentDescription="@string/GpLogin"
+                    android:onClick="click"
+                    android:src="@drawable/ic_plus_login"/>
             </LinearLayout>
 
             <TextView
