@@ -33,6 +33,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginRight="0dp"
                 android:layout_alignParentRight="true"
+                android:clickable="true"
                 android:contentDescription="@string/contentDesc" />
         </RelativeLayout>
         

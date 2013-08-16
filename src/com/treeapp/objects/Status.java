@@ -1,7 +1,5 @@
 package com.treeapp.objects;
 
-import android.graphics.drawable.Drawable;
-
 public class Status {
 
 	private String Status;

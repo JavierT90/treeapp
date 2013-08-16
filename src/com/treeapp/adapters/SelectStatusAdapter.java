@@ -52,7 +52,7 @@ public class SelectStatusAdapter extends ArrayAdapter<Status> {
 			@Override
 			public void onClick(View v) {
 				fragment.setStatus(index);
-				if(index == 0) {
+				if(index == 0) { 
 					CustomToast.makeErrorText(context, list.get(index).getStatus() +   
 							" lalaskhdfka j asl;kdfj aslkdjf ;laksdjf ;alksdjf ;laksj", Toast.LENGTH_SHORT).show();
 				} else if (index == 1) {

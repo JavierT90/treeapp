@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	style="@style/DialogContainer">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_select_status"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin_3"
+        android:paddingLeft="@dimen/activity_horizontal_margin_3"
+        android:paddingRight="@dimen/activity_horizontal_margin_3"
+        android:paddingTop="@dimen/activity_vertical_margin_3" >
+
+        <TextView style="@style/TextViews"
+            android:id="@+id/TXTTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent_black1"
+            android:padding="@dimen/dialog_buttons_padding"
+            android:text="@string/ErrorEmail" />
+
+        <TextView
+            android:id="@+id/TXTMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent_black1"
+            android:padding="@dimen/dialog_buttons_padding"
+            android:text="@string/ErrorPassLenghtShort"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/LNLButtonsContent"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent_black1"
+            android:orientation="horizontal"
+            android:padding="@dimen/dialog_buttons_padding" >
+        </LinearLayout>
+    </LinearLayout>
+    
+    <Button 
+        android:id="@+id/IMBClose"
+        android:layout_marginTop="@dimen/margin_close_btn"
+        android:layout_marginRight="@dimen/margin_close_btn"
+        android:layout_width="@dimen/zise_close_btn"
+        android:layout_height="@dimen/zise_close_btn"
+        android:background="@drawable/selector_close_btn"
+        android:contentDescription="@string/contentDesc"
+        android:layout_alignTop="@+id/linearLayout1"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:text="@string/x"/>
+
+</RelativeLayout>

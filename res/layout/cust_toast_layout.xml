@@ -17,9 +17,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:gravity="center"
+        android:gravity="center"   
         android:textStyle="bold"
-        android:text=" Toast Notifica fas dfjakls jdflajs; flkjation"
-        android:textColor="@color/white" />
+        android:text="@string/ErrorPassNotEqual"
+        android:textColor="@color/white"
+        android:textSize="@dimen/toast_text_size" 
+        android:layout_marginLeft="@dimen/toast_margin"
+        android:layout_marginRight="@dimen/toast_margin"/>
 
 </RelativeLayout>

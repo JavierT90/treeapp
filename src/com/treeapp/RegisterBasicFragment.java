@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.telephony.TelephonyManager;
@@ -50,6 +51,8 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 	// account Created?
 	private boolean created;
 	private static final String CREATED = "created";
+	private int mEditTextId;
+	private final String TXTERROR = "mEdit";
 
 	private View mView;
 	private final String TAG = "Register Basic";
@@ -62,9 +65,10 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		if(savedInstanceState != null)
+		if(savedInstanceState != null) {
 			created = savedInstanceState.getBoolean(CREATED);
-		else 
+			mEditTextId = savedInstanceState.getInt(TXTERROR);
+		} else 
 			created = false;
 		Log.d(TAG, "onCreate");
 	}
@@ -101,44 +105,47 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 				.getSystemService(Context.TELEPHONY_SERVICE);
 		String mCountryCode = tm.getSimCountryIso();
 
+		// listener for hint code and phone
+		TXTCountryCode.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start,
+					int before, int count) {
+
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start,
+					int count, int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				if (s != null) {
+					Log.d("tag", s.toString());
+					if (s.toString().equals(""))
+						TXTPhone.setHint(getResources().getString(
+								R.string.phone));
+					else
+						TXTPhone.setHint("");
+				} else
+					Log.d("tar", "Is null!!");
+			}
+		});
+
 		// get country code and set
 		// String mCountryCode =
 		// getResources().getConfiguration().locale.getCountry();
 		if (mCountryCode == null || mCountryCode.equals("")) {
 			// no hay country code
 		} else {
+			// hay country code
 			TXTPhone.setHint("");
 			Log.i("mCountryCode", mCountryCode);
 			String cod = GlobalHelper.getCodeCountry(mCountryCode);
 			Log.i("cod", cod == null ? " null? wtf" : cod.toString());
 			TXTCountryCode.setText(cod);
-			TXTCountryCode.addTextChangedListener(new TextWatcher() {
-
-				@Override
-				public void onTextChanged(CharSequence s, int start,
-						int before, int count) {
-
-				}
-
-				@Override
-				public void beforeTextChanged(CharSequence s, int start,
-						int count, int after) {
-
-				}
-
-				@Override
-				public void afterTextChanged(Editable s) {
-					if (s != null) {
-						Log.d("tag", s.toString());
-						if (s.toString().equals(""))
-							TXTPhone.setHint(getResources().getString(
-									R.string.phone));
-						else
-							TXTPhone.setHint("");
-					} else
-						Log.d("tar", "Is null!!");
-				}
-			});
 		}
 	}
 
@@ -171,6 +178,7 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 	 * @return true if correspond an any EditText or false if not
 	 */
 	private boolean setErrorInEditText(RegisterException exception) {
+		boolean ret = false;
 		if (!exception.getMessage().equals("")) {
 			error = exception.getMessage();
 			switch (exception.getCode()) {
@@ -178,45 +186,54 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 				TXTEmail.setError(exception.getMessage());
 				TXTEmail.requestFocus();
 				mEditText = TXTEmail;
-				return true;
+				ret = true;
+				break;
 			case GlobalHelper.ERR_REG_PASS:
 				TXTPassword.setError(exception.getMessage());
 				TXTPassword.requestFocus();
 				mEditText = TXTPassword;
-				return true;
+				ret = true;
+				break;
 			case GlobalHelper.ERR_REG_PHONE_CODE:
 				TXTCountryCode.setError(exception.getMessage());
 				TXTCountryCode.requestFocus();
 				mEditText = TXTCountryCode;
-				return true;
+				ret = true;
+				break;
 			case GlobalHelper.ERR_REG_PHONE_NUMBER:
 				TXTPhone.setError(exception.getMessage());
 				TXTPhone.requestFocus();
 				mEditText = TXTPhone;
-				return true;
+				ret = true;
+				break;
 			case GlobalHelper.ERR_REG_USER:
 				TXTUsername.setError(exception.getMessage());
 				TXTUsername.requestFocus();
 				mEditText = TXTUsername;
-				return true;
+				ret = true;
+				break;
 			case GlobalHelper.ERR_REG_RETYPE_PASS:
 				TXTRetypePass.setError(exception.getMessage());
 				TXTRetypePass.requestFocus();
-				return true;
+				ret = true;
+				break;
 			case ParseException.EMAIL_TAKEN:
 				TXTEmail.setError(exception.getMessage());
 				TXTEmail.requestFocus();
 				mEditText = TXTEmail;
-				return true;
+				ret = true;
+				break;
 			case ParseException.USERNAME_TAKEN:
 				TXTUsername.setError(exception.getMessage());
 				TXTUsername.requestFocus();
 				mEditText = TXTUsername;
-				return true;
+				ret = true;
+				break;
 			}
+			mEditTextId = mEditText.getId();
 		} else
 			error = null;
-		return false;
+		return ret;
 	}
 
 	@Override
@@ -250,6 +267,9 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 						dialog.setCancelable(false);
 						dialog.setCanceledOnTouchOutside(false);
 						dialog.show();
+						// disable change screen orientation if is in portraint
+						getActivity().setRequestedOrientation(ActivityInfo.
+								SCREEN_ORIENTATION_NOSENSOR);
 						// intent create User in parse
 						ParseUser user = new ParseUser();
 						user.setEmail(mEmail);
@@ -264,7 +284,11 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 
 							@Override
 							public void done(ParseException e) {
-								dialog.dismiss();
+								try {
+									dialog.dismiss(); 
+								} catch (Exception ex) {
+									ex.printStackTrace();
+								}
 								if (e == null) {
 									finishSignUp();
 								} else {
@@ -281,6 +305,8 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 										alert.show();
 									}
 								}
+								getActivity().setRequestedOrientation(ActivityInfo.
+										SCREEN_ORIENTATION_SENSOR);
 							}
 						});
 					} else {
@@ -294,12 +320,19 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 
 	private void finishSignUp() {
 		created = true;
-		CustomToast.makeInfoText(getActivity(), "Account created!",
+		try {
+		CustomToast.makeInfoText(getActivity(), getActivity().
+				getResources().getString(R.string.AccountCreated),
 				Toast.LENGTH_LONG).show();
-//		Toast.makeText(getActivity(), R.string.AccountCreated,
-//				Toast.LENGTH_LONG).show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
 		// to add Picture
 		RegisterActivity.mViewPager.setCurrentItem(1);
+		} catch (Exception e) {
+			e.printStackTrace();	
+		}
 		// quit error
 		if (mEditText != null) {
 			mEditText = null;
@@ -323,19 +356,34 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 		TXTPassword.setKeyListener(null);
 		TXTRetypePass.setKeyListener(null);
 		// set OK image
+		IMVComplete.setImageResource(R.drawable.ic_ok);
 		IMVComplete.setBackground(getActivity().getResources().
-				getDrawable(R.drawable.ic_ok));
+				getDrawable(R.drawable.login_links));
+		IMVComplete.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				CustomToast.makeInfoText(getActivity(), 
+						getActivity().getResources().getString(R.string.AccountCreated), 
+						Toast.LENGTH_LONG).show();
+			}
+		});
 
 	}
 
 	public void clearErrors() {
 		if (mEditText != null)
 			mEditText.setError(null);
+		else
+			Log.e(TAG, "mEditText is NULL");
 	}
 
+	// back to the last error
 	public void restErrors() {
-		if (mEditText != null && error != null)
+		if (mEditText != null && error != null) {
 			mEditText.setError(error);
+			mEditText.requestFocus();
+		} else
+			Log.e(TAG, "mEditText is NULL in rest");
 	}  
 	
 	@Override
@@ -349,6 +397,12 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 		super.onResume();
 		Log.d(TAG, "onResume"); 
 		
+		// recover editText with error
+		if (mEditTextId != -1){
+			mEditText = (EditText) getActivity().findViewById(mEditTextId);
+			Log.d(TAG, "textId: " + mEditTextId);
+		} 
+
 		if(created) { // EditTexts not enabled
 			initStateWhenCreated();
 		} else
@@ -377,21 +431,24 @@ public class RegisterBasicFragment extends Fragment implements OnClickListener {
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		
+		// SAVE state if restarts activity 
 		outState.putBoolean(CREATED, created);
+		outState.putInt(TXTERROR, mEditText != null ? mEditText.getId() : -1);
+		Log.e(TAG, mEditText != null ? "no es null" : "es null");
 	}
 	
 	private class CleanErrorWatcher implements TextWatcher {
 
-		private EditText mEditText;
+		private EditText miEditText;
 
-		public CleanErrorWatcher(EditText mEditText) {
-			this.mEditText = mEditText;
+		public CleanErrorWatcher(EditText miEditText) {
+			this.miEditText = miEditText;
 		}
 
 		@Override
 		public void afterTextChanged(Editable s) {
-			if (mEditText.getError() != null)
-				mEditText.setError(null);
+			if (miEditText.getError() != null)
+				miEditText.setError(null);
 		}
 
 		@Override

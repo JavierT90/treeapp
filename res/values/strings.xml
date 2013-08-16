@@ -90,6 +90,11 @@
     <string name="Invisible">Invisible</string>
     <string name="Offline">Desconectado</string>
     <string name="ChooseStatus">Elíge tu estado</string>
+    <string name="ProfilePicture">Foto de perfil</string>
+    <string name="Select_your_profile_image_or_take_a_picture">Selecciona una imagen de perfil o toma una foto</string>
+    <string name="Status">Estado</string>
+    <string name="Write_the_first_thing_that_comes_to_mind">¡Escribe lo primero que te venga a la mente!</string>
+    <string name="x">X</string>
 
     <!-- COLORS -->
     <color name="white">#FFFFFF</color>
@@ -107,6 +112,8 @@
     <color name="error">#953B39</color>
     <color name="info">#3A87BD</color>
     <color name="warning">#C09853</color>
+    <color name="back_in_disabled">#C2000000</color>
+    <color name="line_acionbar_sherlock">#34B2EC</color>
     
     <!-- BOOLEANS -->
     <bool name="PhoneRequired">true</bool>

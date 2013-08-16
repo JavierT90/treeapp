@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <corners android:radius="@dimen/close_btn_corner_radius" />
+
+	<solid android:color="@color/transparent_black"/>
+    <stroke
+        android:width="@dimen/close_button_stroke"
+        android:color="@color/error" />
+
+</shape>

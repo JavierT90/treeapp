@@ -3,6 +3,10 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin_2">20dp</dimen>
+    <dimen name="activity_vertical_margin_2">20dp</dimen>
+    <dimen name="activity_horizontal_margin_3">5dp</dimen>
+    <dimen name="activity_vertical_margin_3">5dp</dimen>
     <dimen name="login_text">18sp</dimen>
 	<dimen name="login_top">80dp</dimen>
 	<dimen name="login_margin_top_bottom">15dp</dimen>
@@ -11,9 +15,22 @@
 	<dimen name="link_padding_sides">4dp</dimen>
 	<dimen name="link_padding_up_down">5dp</dimen>
 	<dimen name="link_corner_radius">4dp</dimen>
-	<dimen name="status_dialog_radius">12dp</dimen>
+	<dimen name="status_dialog_radius">2dp</dimen>
 	<dimen name="picture_padding">30dp</dimen>
 	<dimen name="toast_separate">12dp</dimen>
 	<dimen name="toast_padding">7dp</dimen>
 	<dimen name="toast_top_down">2dp</dimen>
+	<dimen name="toast_margin">32dp</dimen>
+	<dimen name="toast_text_size">16sp</dimen>
+	<dimen name="margin_close_btn">0dp</dimen>
+	<dimen name="zise_close_btn">32dp</dimen>
+	<dimen name="close_btn_corner_radius">32dp</dimen>
+	<dimen name="dialog_buttons_text_size">16sp</dimen>
+	<dimen name="dialog_buttons_padding">4dp</dimen>
+	<dimen name="buttons_stroke">2dp</dimen>
+	<dimen name="buttons_corner">2dp</dimen>
+	<dimen name="buttons_dialog_paddin">12dp</dimen>
+	<dimen name="toast_stroke">1dp</dimen>
+	<dimen name="close_button_stroke">1dp</dimen>
+	<dimen name="picture_regis_margin">20dp</dimen>
 </resources>

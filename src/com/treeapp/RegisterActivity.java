@@ -3,11 +3,13 @@ package com.treeapp;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.astuetz.viewpager.extensions.PagerSlidingTabStrip;
 import com.treeapp.adapters.TestAdapter;
+import com.treeapp.windows.CustomToast;
 
 public class RegisterActivity extends SherlockFragmentActivity implements
 		OnPageChangeListener {
@@ -61,9 +63,11 @@ public class RegisterActivity extends SherlockFragmentActivity implements
 		if(position == 0) {
 			// restaurate errors
 			mRegisterBasicFragment.restErrors();
+			CustomToast.makeInfoText(this, "position 0", Toast.LENGTH_SHORT).show();
 		} else if (position == 1){
 			// quit errors
 			mRegisterBasicFragment.clearErrors();
+			CustomToast.makeWarningText(this, "position 1", Toast.LENGTH_SHORT).show();
 		}
 	}
 
